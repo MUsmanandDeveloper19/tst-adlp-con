@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #000; /* You can change this color */
+  width: 1%;
+  transition: width 0.4s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+    </style>
+</head>
+<body>
+
+    
+<!-- HTML -->
+
+<a class="nav-link active" href="#">Home</a>
+<a class="nav-link" href="#">Features</a>
+<a class="nav-link" href="#">Pricing</a>
+
+
+<!-- HTML -->
+
+
+</body>
+</html>

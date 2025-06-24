@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fullscreen Image Slider with Text Width Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+/* 
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    } */
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide-content {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px 30px;
+      font-size: 38px;
+      overflow: hidden;
+      white-space: nowrap;
+      border-radius: 10px;
+    }
+
+    .text-animate {
+      display: inline-block;
+      width: 0%;
+      overflow: hidden;
+      animation: expandText 1.5s ease forwards;
+    }
+
+    @keyframes expandText {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <div class="slide active" style="background-image: url('Celebrate\ Women\ and\ Girls\ in\ Science!.jpg');">
+      <div class="slide-content"><span class="text-animate">Welcome to Nature</span></div>
+    </div>
+    <div class="slide" style="background-image: url('Ready\ to\ revolutionize\ your\ marketing\ strategy_\ 🔥….jpg');">
+      <div class="slide-content"><span class="text-animate">Explore the City Lights</span></div>
+    </div>
+    <div class="slide" style="background-image: url('Celebrate\ Women\ and\ Girls\ in\ Science!.jpg');">
+      <div class="slide-content"><span class="text-animate">Feel the Mountain Breeze</span></div>
+    </div>
+    <div class="slide" style="background-image: url('Ready\ to\ revolutionize\ your\ marketing\ strategy_\ 🔥….jpg');">
+      <div class="slide-content"><span class="text-animate">Walk Through the Forest</span></div>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    setInterval(() => {
+      // Remove current active
+      slides[index].classList.remove('active');
+
+      // Reset old text animation (optional)
+      const oldText = slides[index].querySelector('.text-animate');
+      oldText.style.width = '0%'; // reset for next loop
+
+      // Move to next
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+
+      // Trigger animation again
+      const newText = slides[index].querySelector('.text-animate');
+      newText.classList.remove('text-animate');
+      void newText.offsetWidth; // trigger reflow
+      newText.classList.add('text-animate');
+    }, 4000); // every 4 seconds
+  </script>
+
+</body>
+</html>
